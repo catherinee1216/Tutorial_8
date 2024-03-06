@@ -1,216 +1,47 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
-author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: LINK."
+title: "An Analysis on Nonresponse Rates in Web Surveys"
+author: Catherine Punnoose
+thanks: "Code and data are available at: https://github.com/catherinee1216/Tutorial_8.git"
 date: today
 date-format: long
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
 format: pdf
 number-sections: true
 bibliography: references.bib
 ---
 
-```{r}
-#| include: false
-#| warning: false
-#| message: false
+# Introduction 
 
-library(tidyverse)
-library(palmerpenguins)
-```
+The article, *Special Virtual Issue on Nonresponse Rates and Nonresponse Adjustments* sheds light on various challenges associated with nonresponse rates in survey administration. One highlighted concern is the diminishing response rates in surveys, particularly evident in the realm of web surveys.
 
+The article briefly touches upon the observed decline in responses to web surveys, acknowledged as the most effective and efficient means of gathering data across a broad sample population. A comparison of response rates across various survey types indicates that online surveys stand out as the most time and cost-efficient method for sample populations exceeding 300 [@SD]. Online surveys offer several advantages, including reduced research costs, quicker implementation, decreased transcription errors, and simplified analysis [@SD].
 
-# Introduction
+Despite being the preferred method for large-scale data collection, web surveys exhibit a notably high nonresponse rate. As the article notes, "the downward trend in response rates appears across modes, and the shift to web surveys is accelerating an industry-wide response rate decline" [@citeSurvey]. Additional studies suggest that nonresponse rates on web surveys are approximately 12 percent higher compared to alternative survey methods [@SageJ]. 
 
-You can and should cross-reference sections and sub-sections. We use @citeR and @rohan.
+Referring to Jessica Daikeler, Michael Bošnjak, and Katja Lozar Manfreda's study, "Web Versus Other Survey Modes: An Updated and Extended Meta-Analysis Comparing Response Rates," the article cites a 12 percent lower response rate in online surveys compared to modes such as mail, email, telephone, and in-person surveys [@SD]. Hence, proving that there is a significant decrease in response rates for web surveys. 
 
-The remainder of this paper is structured as follows. @sec-data....
+Using the open-source statistical programming language R [@citeR], this short paper will briefly analyze possible causes for low response rates in web surveys as well as methods to improve response rates. 
 
 
 
-# Data {#sec-data}
+# Possible Causes for Low Response Rate 
 
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
+Acknowledging the surprisingly low response rates in web surveys, several factors may account for this phenomenon. One factor is the misconception that a larger sample size ensures a higher response rate. Contrary to this belief, the average response rate for online surveys stands at 44.1% [@SD]. 
 
-```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
-#| echo: false
+A study by Gregor Čehovin et al. (2022) found that sending surveys to more participants did not necessarily result in a heightened response rate [@SageJ]. Instead, the study recommends targeting a clearly defined and refined population to enhance response rates [@SD]. Furthermore, the research indicates that surveys sent to smaller sample sizes reported higher response rates [@SD]. Hence it is suggested that further studies target smaller sample sizes to have a positive response rate. 
 
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = "none") +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
-```
+# Improving Web Survey Response Rates 
 
-Talk more about it.
+To improve response rates in web surveys Gregor Čehovin et al. (2022) provide the following recommendations to consider [@SageJ]: 
 
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
+* The average response rate of an online survey in the education-related field is 44%
+* Sending surveys to more participants does not necessarily yield a higher response rate. It is more critical to have a clearly defined and refined population to send the surveys to.
+* When planning an online survey, consider: 
+    + pre-contact the potential participants
+    + use other types of surveys in conjunction with online surveys
+    + use phone calls to remind the participants about the survey
+* Incentives do not guarantee a boost in the online survey response rates
 
-```{r}
-#| label: fig-planes
-#| fig-cap: Relationship between wing length and width
-#| echo: false
-#| warning: false
-#| message: false
-
-analysis_data <- read_csv(here::here("data/analysis_data/analysis_data.csv"))
-
-analysis_data |> 
-  ggplot(aes(x = width, y = length)) +
-  geom_point(alpha = 0.8) +
-  theme_minimal() +
-  labs(x = "Wing width (mm)",
-       y = "Wing length (mm)")
-```
-
-Talk way more about it. 
-
-
-
-# Model
-
-The goal of our modelling strategy is twofold. Firstly,...
-
-Here we briefly describe the Bayesian analysis model used to investigate... Background details and diagnostics are included in [Appendix -@sec-model-details].
-
-## Model set-up
-
-Define $y_i$ as the number of seconds that the plane remained aloft. Then $\beta_i$ is the wing width and $\gamma_i$ is the wing length, both measured in millimeters.  
-
-\begin{align} 
-y_i|\mu_i, \sigma &\sim \mbox{Normal}(\mu_i, \sigma) \\
-\mu_i &= \alpha + \beta_i + \gamma_i\\
-\alpha &\sim \mbox{Normal}(0, 2.5) \\
-\beta &\sim \mbox{Normal}(0, 2.5) \\
-\gamma &\sim \mbox{Normal}(0, 2.5) \\
-\sigma &\sim \mbox{Exponential}(1)
-\end{align}
-
-We run the model in R [@citeR] using the `rstanarm` package of @rstanarm. We use the default priors from `rstanarm`.
-
-
-### Model justification
-
-We expect a positive relationship between the size of the wings and time spent aloft. In particular...
-
-We can use maths by including latex between dollar signs, for instance $\theta$.
-
-
-# Results
-
-Our results are summarized in @tbl-modelresults.
-
-```{r}
-#| echo: false
-#| eval: true
-#| warning: false
-#| message: false
-
-library(rstanarm)
-
-first_model <-
-  readRDS(file = here::here("models/first_model.rds"))
-```
-
-```{r}
-#| echo: false
-#| eval: true
-#| label: tbl-modelresults
-#| tbl-cap: "Explanatory models of flight time based on wing width and wing length"
-#| warning: false
-
-modelsummary::modelsummary(
-  list(
-    "First model" = first_model
-  ),
-  statistic = "mad",
-  fmt = 2
-)
-```
-
-
-
-
-# Discussion
-
-## First discussion point {#sec-first-point}
-
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this. 
-
-## Second discussion point
-
-## Third discussion point
-
-## Weaknesses and next steps
-
-Weaknesses and next steps should also be included.
-
-\newpage
-
-\appendix
-
-# Appendix {-}
-
-
-# Additional data details
-
-# Model details {#sec-model-details}
-
-## Posterior predictive check
-
-In @fig-ppcheckandposteriorvsprior-1 we implement a posterior predictive check. This shows...
-
-In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. This shows... 
-
-```{r}
-#| eval: true
-#| echo: false
-#| message: false
-#| warning: false
-#| label: fig-ppcheckandposteriorvsprior
-#| layout-ncol: 2
-#| fig-cap: "Examining how the model fits, and is affected by, the data"
-#| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
-
-pp_check(first_model) +
-  theme_classic() +
-  theme(legend.position = "bottom")
-
-posterior_vs_prior(first_model) +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1") +
-  theme(legend.position = "bottom") +
-  coord_flip()
-```
-
-## Diagnostics
-
-@fig-stanareyouokay-1 is a trace plot. It shows... This suggests...
-
-@fig-stanareyouokay-2 is a Rhat plot. It shows... This suggests...
-
-```{r}
-#| echo: false
-#| eval: true
-#| message: false
-#| warning: false
-#| label: fig-stanareyouokay
-#| fig-cap: "Checking the convergence of the MCMC algorithm"
-#| fig-subcap: ["Trace plot", "Rhat plot"]
-#| layout-ncol: 2
-
-plot(first_model, "trace")
-
-plot(first_model, "rhat")
-```
-
+Applying such recommendations may help improve response rates of further web surveys. 
 
 
 \newpage
