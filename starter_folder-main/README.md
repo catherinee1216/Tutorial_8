@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repo provides a brief analysis on the declining response rates in web surverys. It draws upon points made from the article, "Special Virtual Issue on Nonresponse Rates and Nonresponse Adjustments".
+This repo provides a brief analysis on the declining response rates in web surveys. It draws upon points made from the article, "Special Virtual Issue on Nonresponse Rates and Nonresponse Adjustments". 
 
 
 ## File Structure

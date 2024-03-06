@@ -1,7 +1,6 @@
 LLM: ChatGPT 3.5.
 Date: 6 March 2024
 
-
 User: "reword "The article *Special Virtual Issue on Nonresponse Rates and Nonresponse Adjustments* highlights multiple issues on nonresponse rates specifically when conducting surveys. One issue pointed out was the declining response rates in surveys. 
 
 The article briefly mentions the rising decline in responses on web surveys. Web surveys are considered to be the most effect and efficient way to collect data over a large sample population. When comparing the response rates for online surveys to other types of surveys, it was concluded that online surveys are the most time and cost efficient method for sample populations larger than 300 [CITE SD]. Online surveys provide many advantages such as reductions in research cost, shorter implementation time, fewer transcription errors, and ease of analysis [CITE SD] . 
