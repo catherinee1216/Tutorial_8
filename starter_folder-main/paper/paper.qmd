@@ -19,7 +19,7 @@ Despite being the preferred method for large-scale data collection, web surveys 
 
 Referring to Jessica Daikeler, Michael Bošnjak, and Katja Lozar Manfreda's study, "Web Versus Other Survey Modes: An Updated and Extended Meta-Analysis Comparing Response Rates," the article cites a 12 percent lower response rate in online surveys compared to modes such as mail, email, telephone, and in-person surveys [@SD]. Hence, proving that there is a significant decrease in response rates for web surveys. 
 
-Using the open-source statistical programming language R [@citeR], this short paper will briefly analyze possible causes for low response rates in web surveys as well as methods to improve response rates. 
+Using the open-source statistical programming language R [@citeR], this short paper will briefly analyze possible causes for low response rates in web surveys and provide methods to improve response rates. 
 
 
 
